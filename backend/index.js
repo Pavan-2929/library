@@ -10,13 +10,24 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:3000", // development
+  "https://library-2929-ls8cfm4u8-pavans-projects-ec883ca7.vercel.app", 
+];
+
 app.use(
   cors({
     credentials: true,
-    origin:
-      "https://library-2929-ls8cfm4u8-pavans-projects-ec883ca7.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
+
 dbConnection();
 
 app.use("/api/auth", authRouter);
