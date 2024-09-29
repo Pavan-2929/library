@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import dbConnection from "./db.js";
 import authRouter from "./routes/auth.routes.js";
 import bookRouter from "./routes/book.routes.js";
+import transactionRouter from "./routes/transaction.routes.js";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ dbConnection();
 
 app.use("/api/auth", authRouter);
 app.use("/api/book", bookRouter);
+app.use("/api", transactionRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

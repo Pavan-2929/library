@@ -4,6 +4,9 @@ import { FaBook, FaRupeeSign, FaLayerGroup } from "react-icons/fa";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Select from "react-select";
+import TransactionForm from "../pages/Transaction";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -12,6 +15,9 @@ const BookList = () => {
   const [priceRange, setPriceRange] = useState([20, 100]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     axios
@@ -37,8 +43,6 @@ const BookList = () => {
     setCategories(uniqueCategories);
   }, [books]);
 
-  console.log(categories);
-
   const filteredBooks = books.filter((book) => {
     const bookMatchName = book.name
       .toLowerCase()
@@ -52,6 +56,16 @@ const BookList = () => {
 
     return bookMatchName && isWithinPriceRange && matchesCategory;
   });
+
+  const openModal = (book) => {
+    setSelectedBook(book);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedBook(null);
+  };
 
   if (loading) {
     return <div className="text-center text-xl font-semibold">Loading...</div>;
@@ -71,7 +85,7 @@ const BookList = () => {
           />
         </div>
 
-        <div className="w-12/4">
+        <div className="w-1/4">
           <h2 className="text-lg font-semibold text-green-600 mb-2">
             Price Range: ₹{priceRange[0]} - ₹{priceRange[1]}
           </h2>
@@ -127,7 +141,7 @@ const BookList = () => {
               <FaLayerGroup className="text-green-500 mr-2" />
               <span className="text-gray-600">{book.category}</span>
             </div>
-            <div className="mt-4 flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full">
               <div className="flex items-center">
                 <FaRupeeSign className="text-red-500 mr-2" />
                 <span className="text-gray-800 font-bold">
@@ -136,14 +150,39 @@ const BookList = () => {
                 <span className="ml-1 text-gray-600">/ day</span>
               </div>
               <div>
-                <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded-md text-sm">
-                  Rent
-                </button>
+                {isLoggedIn ? (
+                  <button
+                    onClick={() => openModal(book)}
+                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded-md text-sm"
+                  >
+                    Rent
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded-md text-sm"
+                  >
+                    Rent
+                  </Link>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+            <TransactionForm
+              bookId={selectedBook._id}
+              closeModal={closeModal}
+              dailyRent={selectedBook.rentPerDay}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

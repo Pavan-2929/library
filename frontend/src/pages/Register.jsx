@@ -33,7 +33,8 @@ const Register = () => {
         `${backendUrl}/api/auth/register`,
         formData
       );
-      console.log(response);
+      console.log(response)
+      navigate("/login");
       setLoading(false);
     } catch (error) {
       console.log(error);
