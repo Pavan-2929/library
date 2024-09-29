@@ -66,9 +66,9 @@ export const login = async (req, res, next) => {
     const expiryTime = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
 
     res.cookie("token", token, {
-      httpOnly: true,
       expires: expiryTime,
       sameSite: "None",
+      secure: true,
     });
 
     res.status(200).json({
@@ -86,7 +86,7 @@ export const login = async (req, res, next) => {
 export const logout = async (req, res, next) => {
   try {
     res.clearCookie("token");
-    // console.log(req.user);
+    console.log(req.user);
 
     res.status(200).json({ success: true, message: "logout successful" });
   } catch (error) {

@@ -5,6 +5,8 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../store/auth/authSlice";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -14,6 +16,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -32,9 +35,15 @@ const Login = () => {
         formData,
         { withCredentials: true }
       );
+
+      if (response.status === 200) {
+        console.log(response);
+        
+        dispatch(login(response.data.user));
+        navigate("/");
+      }
       console.log(response);
       setLoading(false);
-      navigate("/");
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -42,7 +51,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 via-gray-200 to-gray-400">
+    <div className="flex justify-center items-center min-h-[90vh] px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 via-gray-200 to-gray-400">
       <form
         onSubmit={handleLogin}
         className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg border border-gray-300"

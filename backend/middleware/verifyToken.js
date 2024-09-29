@@ -3,13 +3,16 @@ import errorHandler from "../utils/error.js";
 import UserModel from "../models/user.model.js";
 
 const verifyToken = async (req, res, next) => {
-  const cookie = req.headers.cookie;
+  const cookies = req.headers.cookie;
+  console.log(req.headers);
 
-  if (!cookie) {
+  console.log(cookies);
+
+  if (!cookies) {
     return next(errorHandler(404, "Cookie not found"));
   }
 
-  const token = cookie.split("token=")[1];
+  const token = cookies.split("token=")[1];
 
   console.log(token);
 

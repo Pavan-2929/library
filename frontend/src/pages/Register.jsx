@@ -42,7 +42,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 via-gray-200 to-gray-400">
+    <div className="flex justify-center items-center min-h-[90vh] px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 via-gray-200 to-gray-400">
       <form
         onSubmit={handleRegistration}
         className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg border border-gray-300"
