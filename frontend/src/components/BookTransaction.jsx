@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const BookTransactions = () => {
   const [bookName, setBookName] = useState("");
@@ -13,7 +14,7 @@ const BookTransactions = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/transactions/get",
+        `${backendUrl}/api/transactions/get`,
         {
           params: { bookName },
         }

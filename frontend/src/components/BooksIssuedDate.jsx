@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const BooksIssuedInDateRange = () => {
   const [startDate, setStartDate] = useState(null);
@@ -16,7 +17,7 @@ const BooksIssuedInDateRange = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/transactions/date-range",
+        `${backendUrl}/api/transactions/date-range`,
         {
           params: {
             startDate: startDate.toISOString(),
@@ -25,7 +26,7 @@ const BooksIssuedInDateRange = () => {
         }
       );
       console.log(response);
-      
+
       setTransactions(response.data);
     } catch (err) {
       setError(err.response?.data?.message || "Error fetching transactions");

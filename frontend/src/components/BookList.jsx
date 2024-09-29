@@ -8,6 +8,8 @@ import TransactionForm from "../pages/Transaction";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const BookList = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ const BookList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/book/get")
+      .get(`${backendUrl}/api/book/get`)
       .then((response) => {
         setBooks(response.data);
         setLoading(false);

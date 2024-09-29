@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const BooksIssued = () => {
   const [userId, setUserId] = useState("");
   const [issuedBooks, setIssuedBooks] = useState([]);
@@ -13,7 +15,7 @@ const BooksIssued = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/issued-books/${userId}`
+        `${backendUrl}/api/issued-books/${userId}`
       );
       setIssuedBooks(response.data.issuedBooks);
     } catch (error) {
