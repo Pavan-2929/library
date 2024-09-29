@@ -4,6 +4,10 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import TransactionForm from "./pages/Transaction";
+import TotalRentGenerated from "./components/TotalRentGenerated";
+import BooksIssued from "./components/BooksIssued";
+import BooksIssuedInDateRange from "./components/BooksIssuedDate";
+import BookTransactions from "./components/BookTransaction";
 
 function App() {
   return (
@@ -14,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/test" element={<TransactionForm />} />
+          <Route path="/test" element={<BookTransactions />} />
         </Routes>
       </BrowserRouter>
     </>
