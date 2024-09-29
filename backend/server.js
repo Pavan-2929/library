@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import dbConnection from "./db.js";
-import router from "./routes/auth.routes.js";
+import authRouter from "./routes/auth.routes.js";
+import bookRouter from "./routes/book.routes.js";
 dotenv.config();
 
 const app = express();
@@ -11,7 +12,8 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
 dbConnection();
 
-app.use("/api/auth", router);
+app.use("/api/auth", authRouter);
+app.use("/api/book", bookRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
