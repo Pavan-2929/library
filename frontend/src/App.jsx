@@ -18,7 +18,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/test" element={<BookTransactions />} />
+          <Route path="/api1" element={<BookTransactions />} />
+          <Route path="/api2" element={<TotalRentGenerated />} />
+          <Route path="/api3" element={<BooksIssued />} />
+          <Route path="/api4" element={<BooksIssuedInDateRange />} />
         </Routes>
       </BrowserRouter>
     </>

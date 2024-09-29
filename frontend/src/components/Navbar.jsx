@@ -57,11 +57,17 @@ const Navbar = () => {
           <NavLink to="/" className="hover:text-green-600 cursor-pointer">
             Home
           </NavLink>
-          <NavLink to="/my-bools" className="hover:text-green-600 cursor-pointer">
-            My-Books
+          <NavLink to="/api1" className="hover:text-green-600 cursor-pointer">
+            Api1
           </NavLink>
-          <NavLink to="/create-book" className="hover:text-green-600 cursor-pointer">
-            Create-Book
+          <NavLink to="/api2" className="hover:text-green-600 cursor-pointer">
+            Api2
+          </NavLink>
+          <NavLink to="/api3" className="hover:text-green-600 cursor-pointer">
+            Api3
+          </NavLink>
+          <NavLink to="/api4" className="hover:text-green-600 cursor-pointer">
+            Api4
           </NavLink>
         </div>
 
@@ -104,11 +110,17 @@ const Navbar = () => {
           <NavLink to="/" className="hover:text-green-600 cursor-pointer ">
             Home
           </NavLink>
-          <NavLink to="/my-books" className="hover:text-green-600 cursor-pointer">
-            My-Books
+          <NavLink to="/api1" className="hover:text-green-600 cursor-pointer">
+            Api1
           </NavLink>
-          <NavLink to="/create-book" className="hover:text-green-600 cursor-pointer">
-            Create-Book
+          <NavLink to="/api2" className="hover:text-green-600 cursor-pointer">
+            Api2
+          </NavLink>
+          <NavLink to="/api3" className="hover:text-green-600 cursor-pointer">
+            Api3
+          </NavLink>
+          <NavLink to="/api4" className="hover:text-green-600 cursor-pointer">
+            Api4
           </NavLink>
           <div className="pt-4">
             {isLoggedIn ? (
