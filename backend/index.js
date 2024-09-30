@@ -10,20 +10,12 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-const allowedOrigins = [
-  "https://library-2929.vercel.app",
-];
-
 app.use(
   cors({
     credentials: true,
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "https://library-2929.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"], 
   })
 );
 
