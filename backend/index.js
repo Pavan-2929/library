@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(
-  cors({ credentials: true, origin: "https://library-1-fxpt.onrender.com" })
+  cors({ credentials: true, origin: "https://library-2929.onrender.com" })
 );
 
 dbConnection();
