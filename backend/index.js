@@ -11,9 +11,7 @@ const app = express();
 
 app.use(express.json());
 const allowedOrigins = [
-  "http://localhost:3000",
   "https://library-2929.vercel.app",
-  "https://library-2929-ls8cfm4u8-pavans-projects-ec883ca7.vercel.app",
 ];
 
 app.use(
